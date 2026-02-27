@@ -16,7 +16,7 @@ function MainPage({cardsCount}: MainPageProps): JSX.Element {
           <div className="header__wrapper">
             <div className="header__left">
               <a className="header__logo-link header__logo-link--active">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
+                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={81} height={41} />
               </a>
             </div>
             <nav className="header__nav">
@@ -84,10 +84,10 @@ function MainPage({cardsCount}: MainPageProps): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">312 places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
+                <span className="places__sorting-caption">Sort by  </span>
                 <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
+                   Popular
+                  <svg className="places__sorting-arrow" width={7} height={4}>
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
