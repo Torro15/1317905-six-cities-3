@@ -11,6 +11,7 @@ root.render(
   <React.StrictMode>
     <App
       cardsCount = {Setting.CardsCount}
+      offersCount = {Setting.OffersCount}
     />
   </React.StrictMode>
 );
