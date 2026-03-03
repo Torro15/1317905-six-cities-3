@@ -47,7 +47,7 @@ function App({cardsCount, offersCount, isAuth }: AppScreenProps): JSX.Element {
         />
         <Route
           path="*"
-          element={<NotFoundScreenPage />}
+          element={<NotFoundScreenPage isAuth={isAuth}/>}
         />
       </Routes>
     </BrowserRouter>
