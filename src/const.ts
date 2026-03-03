@@ -12,3 +12,10 @@ export const CITIES = [
   'Hamburg',
   'Dusseldorf',
 ] as const;
+
+export enum AppRoute {
+  Login = '/login',
+  Main = '/',
+  Favorites = '/favorites',
+  Offer = '/offer/:id'
+}
