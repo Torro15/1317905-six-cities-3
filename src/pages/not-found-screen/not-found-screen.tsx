@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Header from '../../components/header/header';
+import {AppRoute} from '../../const';
 
 function NotFoundScreenPage(): JSX.Element {
   return (
@@ -11,7 +11,6 @@ function NotFoundScreenPage(): JSX.Element {
         backgroundColor: '#f5f5f5',
       }}
     >
-      <Header isAuth={false} />
 
       <main
         className="page__main page__main--index"
@@ -47,7 +46,7 @@ function NotFoundScreenPage(): JSX.Element {
           </h1>
 
           <Link
-            to="/"
+            to={AppRoute.Main}
             style={{
               display: 'inline-block',
               padding: '14px 40px',

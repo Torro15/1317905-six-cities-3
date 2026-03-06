@@ -6,49 +6,50 @@ import FavoritesPage from '../../pages/favorites/favorites-page.tsx';
 import OfferPage from '../../pages/offer/offer-page.tsx';
 import NotFoundScreenPage from '../../pages/not-found-screen/not-found-screen.tsx';
 import PrivateRoute from '../private-route/private-route.tsx';
+import Layout from '../layout/layout.tsx';
 
 type AppScreenProps = {
   cardsCount: number;
   offersCount: number;
-  isAuth: boolean;
 }
 
-function App({cardsCount, offersCount, isAuth }: AppScreenProps): JSX.Element {
+function App({cardsCount, offersCount}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={
+
+        <Route element={<Layout pageClass="page--gray page--main" withNav/>}>
+          <Route index element={
             <MainPage
               cardsCount={cardsCount}
               offersCount={offersCount}
-              isAuth={isAuth}
             />
           }
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<LoginPage />}
-        />
-        <Route
-          path={AppRoute.Favorites}
-          element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
-            >
-              <FavoritesPage isAuth={isAuth} />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Offer}
-          element={<OfferPage isAuth={isAuth} />}
-        />
-        <Route
-          path="*"
-          element={<NotFoundScreenPage />}
-        />
+          />
+        </Route>
+
+
+        <Route element={<Layout withNav/>}>
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+                <FavoritesPage />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+
+        <Route element={<Layout withNav/>}>
+          <Route path={AppRoute.Offer} element={<OfferPage />} />
+        </Route>
+        <Route element={<Layout pageClass="page--gray page--login" withNav={false}/>}>
+          <Route path={AppRoute.Login } element={<LoginPage />} />
+        </Route>
+        <Route element={<Layout withNav/>}>
+          <Route path="*" element={<NotFoundScreenPage />} />
+        </Route>
+
       </Routes>
     </BrowserRouter>
   );
