@@ -109,3 +109,8 @@ export const imageWrapperClassMap = {
   [CardViewMode.OffersView.name]: 'near-places__image-wrapper',
 };
 
+export const REVIEW_CONSTANTS = {
+  MIN_LENGTH: 50,
+  MAX_LENGTH: 300,
+} as const;
+

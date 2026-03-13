@@ -1,8 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-
-
-const MIN_REVIEW_LENGTH = 50;
-const MAX_REVIEW_LENGTH = 300;
+import { REVIEW_CONSTANTS } from '../../const';
 
 type RatingValue = 1 | 2 | 3 | 4 | 5;
 
@@ -28,8 +25,8 @@ function OfferReviewForm(): JSX.Element {
   };
 
   const isFormValid = rating !== null &&
-                     review.length >= MIN_REVIEW_LENGTH &&
-                     review.length <= MAX_REVIEW_LENGTH;
+                     review.length >= REVIEW_CONSTANTS.MIN_LENGTH &&
+                     review.length <= REVIEW_CONSTANTS.MAX_LENGTH;
 
   return (
     <form
