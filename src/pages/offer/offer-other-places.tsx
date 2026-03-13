@@ -4,14 +4,14 @@ import { CardViewMode } from '../../const.ts';
 
 type OfferOtherPlacesProps = {
   offers: Offer[];
-  nearOffers: number;
+  nearbyOffersCount: number;
 };
 
 function OfferOtherPlaces(props: OfferOtherPlacesProps): JSX.Element {
 
-  const {offers, nearOffers} = props;
+  const {offers, nearbyOffersCount} = props;
 
-  const displayedNearOffers = offers.slice(0, nearOffers);
+  const displayedNearOffers = offers.slice(0, nearbyOffersCount);
 
   return (
     <div className="container">

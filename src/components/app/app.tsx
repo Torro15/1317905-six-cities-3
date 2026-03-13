@@ -13,10 +13,10 @@ type AppScreenProps = {
   cardsCount: number;
   offersCount: number;
   offers: Offer[];
-  nearOffers: number;
+  nearbyOffersCount: number;
 }
 
-function App({cardsCount, offersCount, offers, nearOffers}: AppScreenProps): JSX.Element {
+function App({cardsCount, offersCount, offers, nearbyOffersCount}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -34,7 +34,7 @@ function App({cardsCount, offersCount, offers, nearOffers}: AppScreenProps): JSX
           <Route path={AppRoute.Offer} element={
             <OfferPage
               offers={offers}
-              nearOffers={nearOffers}
+              nearOffers={nearbyOffersCount}
             />
           }
           />

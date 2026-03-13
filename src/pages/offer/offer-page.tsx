@@ -35,7 +35,7 @@ function OfferPage({offers, nearOffers}: OfferPageProps): JSX.Element {
       </section>
       <OfferOtherPlaces
         offers={offers}
-        nearOffers={nearOffers}
+        nearbyOffersCount={nearOffers}
       />
     </main>
 
