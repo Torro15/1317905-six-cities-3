@@ -1,16 +1,16 @@
-import PlaceCard from '../../place-card/place-card.tsx';
 import Cities from '../../components/cities/cities.tsx';
+import PlaceCardList from '../../place-card/place-card-list.tsx';
+
+import { Offer } from '../../types/offer.ts';
 
 
 type MainPageProps = {
   cardsCount: number;
   offersCount: number;
+  offers: Offer[];
 }
 
-function MainPage({cardsCount, offersCount}: MainPageProps): JSX.Element {
-  const cards = Array.from({ length: cardsCount }, (_, index) => ({
-    id: index + 1,
-  }));
+function MainPage({cardsCount, offersCount, offers}: MainPageProps): JSX.Element {
 
   return (
     <main className="page__main page__main--index">
@@ -40,11 +40,10 @@ function MainPage({cardsCount, offersCount}: MainPageProps): JSX.Element {
                 <li className="places__option" tabIndex={0}>Top rated first</li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {cards.map((card) => (
-                <PlaceCard key={card.id} />
-              ))}
-            </div>
+            <PlaceCardList
+              cardsCount={cardsCount}
+              offers={offers}
+            />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
