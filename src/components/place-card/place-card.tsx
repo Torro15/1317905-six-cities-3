@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import { OfferCard } from '../../types/offer';
 import { CardViewMode, cardClassMap, imageWrapperClassMap } from '../../const';
-import { getRatingWidth, getOfferRoute, getCapitalLetter } from '../../utils/utils';
+import { getRatingWidth, getOfferRoute, capitalizeFirstLetter } from '../../utils/utils';
 
 type ViewModeType = typeof CardViewMode[keyof typeof CardViewMode];
 
@@ -64,7 +64,7 @@ function PlaceCard(props: PlaceCardProps) : JSX.Element {
         <h2 className="place-card__name">
           <Link to={getOfferRoute(id)}>{title}</Link>
         </h2>
-        <p className="place-card__type">{getCapitalLetter(type)}</p>
+        <p className="place-card__type">{capitalizeFirstLetter(type)}</p>
       </div>
     </article>
 

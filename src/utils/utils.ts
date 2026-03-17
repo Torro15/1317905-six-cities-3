@@ -8,6 +8,6 @@ export function getRatingWidth(rating: number): string {
 
 export const getOfferRoute = (id: string) => `/offer/${id}`;
 
-export const getCapitalLetter = function (t: string) {
+export const capitalizeFirstLetter = function (t: string) {
   return t.charAt(0).toUpperCase() + t.slice(1);
 };

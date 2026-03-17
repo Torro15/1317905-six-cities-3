@@ -3,7 +3,7 @@ import { Offer } from '../../types/offer.ts';
 import OfferGoods from './offer-goods.tsx';
 import OfferHost from './offer-host.tsx';
 import OfferReviews from './offer-reviews.tsx';
-import { getRatingWidth, getCapitalLetter } from '../../utils/utils.ts';
+import { getRatingWidth, capitalizeFirstLetter } from '../../utils/utils.ts';
 
 type OfferInfoProps = {
   offers: Offer[];
@@ -47,7 +47,7 @@ function OfferInfo(props: OfferInfoProps): JSX.Element {
         </div>
         <ul className="offer__features">
           <li className="offer__feature offer__feature--entire">
-            {getCapitalLetter(offer.type)}
+            {capitalizeFirstLetter(offer.type)}
           </li>
           <li className="offer__feature offer__feature--bedrooms">
             {offer.bedrooms} Bedrooms
