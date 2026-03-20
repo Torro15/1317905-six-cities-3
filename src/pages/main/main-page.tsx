@@ -9,9 +9,6 @@ type MainPageProps = {
 };
 
 function MainPage({ offerCards }: MainPageProps): JSX.Element {
-  // const amsterdamOffers = offerCards.filter(
-  //   (offer) => offer.city.name === 'Amsterdam',
-  // );
 
   const isEmpty = offerCards.length === 0;
 
