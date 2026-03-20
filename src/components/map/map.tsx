@@ -1,15 +1,15 @@
 import { useEffect, useRef } from 'react';
-import L from 'leaflet';
+import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { OfferCard } from '../../types/offer';
 
-const defaultIcon = L.icon({
+const defaultIcon = leaflet.icon({
   iconUrl: '/markup/img/pin.svg',
   iconSize: [27, 39],
   iconAnchor: [13, 39],
 });
 
-const activeIcon = L.icon({
+const activeIcon = leaflet.icon({
   iconUrl: '/markup/img/pin-active.svg',
   iconSize: [27, 39],
   iconAnchor: [13, 39],
@@ -33,12 +33,12 @@ function Map({ mapName, offers, activeOfferId = null }: MapProps): JSX.Element {
         zoom: 12,
       };
 
-      const map = L.map(mapRef.current).setView(
+      const map = leaflet.map(mapRef.current).setView(
         [cityLocation.latitude, cityLocation.longitude],
         cityLocation.zoom,
       );
 
-      L.tileLayer(
+      leaflet.tileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
         {
           attribution:
@@ -58,7 +58,7 @@ function Map({ mapName, offers, activeOfferId = null }: MapProps): JSX.Element {
     const map = mapInstanceRef.current;
 
     const markers = offers.map((offer) =>
-      L.marker([offer.location.latitude, offer.location.longitude], {
+      leaflet.marker([offer.location.latitude, offer.location.longitude], {
         icon: offer.id === activeOfferId ? activeIcon : defaultIcon,
       }).addTo(map),
     );
