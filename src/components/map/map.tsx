@@ -3,8 +3,8 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { OfferCard } from '../../types/offer';
 
-import pinIcon from '../../../markup/img/pin.svg';
-import pinActiveIcon from '../../../markup/img/pin-active.svg';
+const pinIcon = '/markup/img/pin.svg';
+const pinActiveIcon = '/markup/img/pin-active.svg';
 
 const defaultIcon = leaflet.icon({
   iconUrl: pinIcon,
