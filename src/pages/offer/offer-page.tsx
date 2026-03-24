@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Offer, OfferCard } from '../../types/offer.ts';
 import { Review } from '../../types/review.ts';
 import OfferGallery from '../../components/offer/offer-gallery.tsx';
-import OfferMap from '../../components/offer/offer-map.tsx';
-import OfferOtherPlaces from '../../components/offer/offer-other-places.tsx';
+import Map from '../../components/map/map.tsx';
+import OfferNearbyPlaces from '../../components/offer/offer-nearby-places.tsx';
 import OfferInfo from '../../components/offer/offer-info.tsx';
 
 type OfferPageProps = {
@@ -14,38 +14,53 @@ type OfferPageProps = {
   reviews: Review[];
 }
 
-function OfferPage({offers, offerCards, nearOffers, reviews}: OfferPageProps): JSX.Element {
-
-  const {id} = useParams<{id:string}>();
+function OfferPage({ offers, offerCards, nearOffers, reviews }: OfferPageProps): JSX.Element {
+  const { id } = useParams<{ id: string }>();
+  const [cardActive, setCardActive] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
+  const currentOffer = offers.find((o) => o.id === id);
 
-  const offer = offers.find((o) => o.id === id);
-  if (!offer) {
+  const nearbyOffers = offerCards
+    .filter((offer) => offer.id !== id)
+    .slice(0, nearOffers);
+
+  const handleCardHover = (offerId: string) => {
+    setCardActive(offerId);
+  };
+
+  const handleCardLeave = () => {
+    setCardActive(null);
+  };
+
+  if (!currentOffer) {
     return <div>Offer not found</div>;
   }
 
-
   return (
-
     <main className="page__main page__main--offer">
       <section className="offer">
-        <OfferGallery images={offer.images}/>
+        <OfferGallery images={currentOffer.images} />
         <OfferInfo
-          offers={offers}
+          offer={currentOffer}
           reviews={reviews}
         />
-        <OfferMap />
+        <Map
+          mapName="offer"
+          offers={nearbyOffers}
+          activeOfferId={cardActive}
+        />
       </section>
-      <OfferOtherPlaces
-        offerCards={offerCards}
-        nearbyOffersCount={nearOffers}
+
+      <OfferNearbyPlaces
+        offers={nearbyOffers}
+        onCardHover={handleCardHover}
+        onCardLeave={handleCardLeave}
       />
     </main>
-
   );
 }
 
