@@ -1,13 +1,74 @@
-import {ReactElement} from 'react';
+import { useEffect, useRef } from 'react';
+import leaflet from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { OfferCard } from '../../types/offer';
+
+const defaultIcon = leaflet.icon({
+  iconUrl: '/markup/img/pin.svg',
+  iconSize: [27, 39],
+  iconAnchor: [13, 39],
+});
+
+const activeIcon = leaflet.icon({
+  iconUrl: '/markup/img/pin-active.svg',
+  iconSize: [27, 39],
+  iconAnchor: [13, 39],
+});
 
 type MapProps = {
-  activeOfferId: string | null;
   mapName: string;
-}
-function Map({activeOfferId, mapName}: MapProps): ReactElement {
-  return (
-    <section className={`${mapName}__map map`} data-active-offer-id={activeOfferId ?? ''} />
-  );
+  offers: OfferCard[];
+  activeOfferId?: string | null;
+};
+
+function Map({ mapName, offers, activeOfferId = null }: MapProps): JSX.Element {
+  const mapRef = useRef<HTMLDivElement | null>(null);
+  const mapInstanceRef = useRef<L.Map | null>(null);
+
+  useEffect(() => {
+    if (mapRef.current !== null && mapInstanceRef.current === null) {
+      const cityLocation = offers[0]?.city.location || {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 12,
+      };
+
+      const map = leaflet.map(mapRef.current).setView(
+        [cityLocation.latitude, cityLocation.longitude],
+        cityLocation.zoom,
+      );
+
+      leaflet.tileLayer(
+        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        },
+      ).addTo(map);
+
+      mapInstanceRef.current = map;
+    }
+  }, [offers]);
+
+  useEffect(() => {
+    if (!mapInstanceRef.current) {
+      return;
+    }
+
+    const map = mapInstanceRef.current;
+
+    const markers = offers.map((offer) =>
+      leaflet.marker([offer.location.latitude, offer.location.longitude], {
+        icon: offer.id === activeOfferId ? activeIcon : defaultIcon,
+      }).addTo(map),
+    );
+
+    return () => {
+      markers.forEach((marker) => marker.remove());
+    };
+  }, [offers, activeOfferId]);
+
+  return <section ref={mapRef} className={`${mapName}__map map`} />;
 }
 
 export default Map;

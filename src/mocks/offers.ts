@@ -9,14 +9,14 @@ export const offersMock: Offer[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 52.35514938496378,
-        longitude: 4.673877537499948,
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
         zoom: 8
       }
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 8
     },
     isFavorite: false,
@@ -43,16 +43,16 @@ export const offersMock: Offer[] = [
     type: 'apartment',
     price: 210,
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.3609553943508,
+        longitude: 4.85309666406198,
         zoom: 8
       }
     },
     location: {
-      latitude: 48.85661,
-      longitude: 2.351499,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 8
     },
     isFavorite: false,
@@ -80,16 +80,16 @@ export const offersMock: Offer[] = [
     type: 'room',
     price: 92,
     city: {
-      name: 'Cologne',
+      name: 'Amsterdam',
       location: {
-        latitude: 50.938361,
-        longitude: 6.959974,
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
         zoom: 8
       }
     },
     location: {
-      latitude: 50.938361,
-      longitude: 6.959974,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 8
     },
     isFavorite: true,
@@ -115,16 +115,16 @@ export const offersMock: Offer[] = [
     type: 'studio',
     price: 135,
     city: {
-      name: 'Hamburg',
+      name: 'Amsterdam',
       location: {
-        latitude: 53.550341,
-        longitude: 10.000654,
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
         zoom: 8
       }
     },
     location: {
-      latitude: 53.550341,
-      longitude: 10.000654,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
       zoom: 8
     },
     isFavorite: false,
@@ -145,42 +145,5 @@ export const offersMock: Offer[] = [
     ],
     maxAdults: 2
   },
-  {
-    id: '6af6f711-c28d-4121-82cd-e0b462a27f04',
-    title: 'Elegant penthouse with balcony in Dusseldorf',
-    type: 'apartment',
-    price: 250,
-    city: {
-      name: 'Dusseldorf',
-      location: {
-        latitude: 51.225402,
-        longitude: 6.776314,
-        zoom: 8
-      }
-    },
-    location: {
-      latitude: 51.225402,
-      longitude: 6.776314,
-      zoom: 8
-    },
-    isFavorite: true,
-    isPremium: true,
-    rating: 4.9,
-    description: 'Luxurious penthouse with a large terrace and panoramic view of the city. Perfect for business trips or celebrations. High level of service.',
-    bedrooms: 3,
-    goods: ['Wi-Fi', 'Air conditioning', 'Balcony', 'Jacuzzi', 'Parking', 'Gym access'],
-    host: {
-      name: 'Victoria Schmidt',
-      avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/7.jpg',
-      isPro: true
-    },
-    images: [
-      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/15.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/16.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/17.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/18.jpg'
-    ],
-    maxAdults: 6
-  }
+
 ];

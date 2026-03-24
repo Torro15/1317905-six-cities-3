@@ -1,19 +1,19 @@
 import Cities from '../../components/cities/cities.tsx';
 import PlaceCardList from '../../components/place-card/place-card-list.tsx';
-import {useState} from 'react';
+import { useState } from 'react';
 import { OfferCard } from '../../types/offer.ts';
-import { MapName } from '../../const.ts';
 import Map from '../../components/map/map.tsx';
 
 type MainPageProps = {
   offerCards: OfferCard[];
-}
+};
 
-function MainPage({offerCards}: MainPageProps): JSX.Element {
+function MainPage({ offerCards }: MainPageProps): JSX.Element {
 
   const isEmpty = offerCards.length === 0;
 
-  const [cardActive, setCardActive ] = useState<string | null>(null);
+
+  const [cardActive, setCardActive] = useState<string | null>(null);
 
   const handleCardHover = (id: string) => {
     setCardActive(id);
@@ -24,7 +24,9 @@ function MainPage({offerCards}: MainPageProps): JSX.Element {
   };
 
   return (
-    <main className={`page__main page__main--index ${isEmpty ? 'page__main--index-empty' : ''}`}>
+    <main
+      className={`page__main page__main--index ${isEmpty ? 'page__main--index-empty' : ''}`}
+    >
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
@@ -32,23 +34,29 @@ function MainPage({offerCards}: MainPageProps): JSX.Element {
         </section>
       </div>
       <div className="cities">
-        <div className={`cities__places-container container ${isEmpty ? 'cities__places-container--empty' : ''}`}>
+        <div
+          className={`cities__places-container container ${isEmpty ? 'cities__places-container--empty' : ''}`}
+        >
           {isEmpty ? (
             <>
               <section className="cities__no-places">
                 <div className="cities__status-wrapper tabs__content">
                   <b className="cities__status">No places to stay available</b>
-                  <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
+                  <p className="cities__status-description">
+                    We could not find any property available at the moment in
+                    Amsterdam
+                  </p>
                 </div>
               </section>
-              <div className="cities__right-section">
-              </div>
+              <div className="cities__right-section"></div>
             </>
           ) : (
             <>
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offerCards.length} places to stay in Amsterdam</b>
+                <b className="places__found">
+                  {offerCards.length} places to stay in Amsterdam
+                </b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
@@ -58,10 +66,21 @@ function MainPage({offerCards}: MainPageProps): JSX.Element {
                     </svg>
                   </span>
                   <ul className="places__options places__options--custom places__options--opened">
-                    <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                    <li className="places__option" tabIndex={0}>Price: low to high</li>
-                    <li className="places__option" tabIndex={0}>Price: high to low</li>
-                    <li className="places__option" tabIndex={0}>Top rated first</li>
+                    <li
+                      className="places__option places__option--active"
+                      tabIndex={0}
+                    >
+                      Popular
+                    </li>
+                    <li className="places__option" tabIndex={0}>
+                      Price: low to high
+                    </li>
+                    <li className="places__option" tabIndex={0}>
+                      Price: high to low
+                    </li>
+                    <li className="places__option" tabIndex={0}>
+                      Top rated first
+                    </li>
                   </ul>
                 </form>
                 <PlaceCardList
@@ -72,13 +91,13 @@ function MainPage({offerCards}: MainPageProps): JSX.Element {
               </section>
               <div className="cities__right-section">
                 <Map
+                  mapName="cities"
+                  offers={offerCards}
                   activeOfferId={cardActive}
-                  mapName={MapName.Cities}
                 />
               </div>
             </>
           )}
-
         </div>
       </div>
     </main>
