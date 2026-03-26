@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Offer, OfferCard } from '../../types/offer.ts';
 import { Review } from '../../types/review.ts';
@@ -12,31 +12,28 @@ type OfferPageProps = {
   offerCards: OfferCard[];
   nearOffers: number;
   reviews: Review[];
-}
+};
 
-function OfferPage({ offers, offerCards, nearOffers, reviews }: OfferPageProps): JSX.Element {
+function OfferPage({
+  offers,
+  offerCards,
+  nearOffers,
+  reviews,
+}: OfferPageProps): JSX.Element {
   const { id } = useParams<{ id: string }>();
-  const [cardActive, setCardActive] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
   const currentOffer = offers.find((o) => o.id === id);
+  const currentOfferCard = offerCards.find((card) => card.id === id);
 
   const nearbyOffers = offerCards
     .filter((offer) => offer.id !== id)
     .slice(0, nearOffers);
 
-  const handleCardHover = (offerId: string) => {
-    setCardActive(offerId);
-  };
-
-  const handleCardLeave = () => {
-    setCardActive(null);
-  };
-
-  if (!currentOffer) {
+  if (!currentOffer || !currentOfferCard) {
     return <div>Offer not found</div>;
   }
 
@@ -44,22 +41,15 @@ function OfferPage({ offers, offerCards, nearOffers, reviews }: OfferPageProps):
     <main className="page__main page__main--offer">
       <section className="offer">
         <OfferGallery images={currentOffer.images} />
-        <OfferInfo
-          offer={currentOffer}
-          reviews={reviews}
-        />
+        <OfferInfo offer={currentOffer} reviews={reviews} />
         <Map
           mapName="offer"
           offers={nearbyOffers}
-          activeOfferId={cardActive}
+          currentOffer={currentOfferCard}
         />
       </section>
 
-      <OfferNearbyPlaces
-        offers={nearbyOffers}
-        onCardHover={handleCardHover}
-        onCardLeave={handleCardLeave}
-      />
+      <OfferNearbyPlaces offers={nearbyOffers} />
     </main>
   );
 }

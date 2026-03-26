@@ -4,11 +4,10 @@ import { OfferCard } from '../../types/offer';
 
 type OfferNearbyPlacesProps = {
   offers: OfferCard[];
-  onCardHover: (id: string) => void;
-  onCardLeave: () => void;
+
 }
 
-function OfferNearbyPlaces({ offers, onCardHover, onCardLeave }: OfferNearbyPlacesProps): JSX.Element {
+function OfferNearbyPlaces({ offers }: OfferNearbyPlacesProps): JSX.Element {
 
   return (
     <div className="container">
@@ -20,8 +19,6 @@ function OfferNearbyPlaces({ offers, onCardHover, onCardLeave }: OfferNearbyPlac
               key={offer.id}
               offerCard={offer}
               viewMode={CardViewMode.OffersView}
-              onMouseEnter={onCardHover}
-              onMouseLeave={onCardLeave}
             />
           ))}
         </div>
