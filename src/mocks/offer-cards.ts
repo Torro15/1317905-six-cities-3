@@ -162,27 +162,90 @@ export const offerCardsMock: OfferCard[] = [
     rating: 4.3,
     previewImage: 'https://15.design.htmlacademy.pro/static/hotel/13.jpg'
   },
+  // {
+  //   id: '6af6f711-c28d-4121-82cd-e0b462a27f07',
+  //   title: 'Elegant penthouse with balcony in Dusseldorf',
+  //   type: 'apartment',
+  //   price: 250,
+  //   city: {
+  //     name: 'Dusseldorf',
+  //     location: {
+  //       latitude: 51.225402,
+  //       longitude: 6.776314,
+  //       zoom: 8
+  //     }
+  //   },
+  //   location: {
+  //     latitude: 51.225402,
+  //     longitude: 6.776314,
+  //     zoom: 8
+  //   },
+  //   isFavorite: true,
+  //   isPremium: true,
+  //   rating: 4.9,
+  //   previewImage: 'https://15.design.htmlacademy.pro/static/hotel/14.jpg'
+  // },
   {
-    id: '6af6f711-c28d-4121-82cd-e0b462a27f07',
-    title: 'Elegant penthouse with balcony in Dusseldorf',
+    id: '6af6f711-c28d-4121-82cd-e0b462a27f08',
+    title: 'Cozy apartment near Eiffel Tower',
     type: 'apartment',
-    price: 250,
+    price: 185,
+    city: {
+      name: 'Paris',
+      location: { latitude: 48.8584, longitude: 2.2945, zoom: 8 }
+    },
+    location: { latitude: 48.8584, longitude: 2.2945, zoom: 8 },
+    isFavorite: false,
+    isPremium: false,
+    rating: 4.6,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/19.jpg'
+  },
+
+  {
+    id: '6af6f711-c28d-4121-82cd-e0b462a27f09',
+    title: 'Modern apartment in city center',
+    type: 'apartment',
+    price: 110,
+    city: {
+      name: 'Cologne',
+      location: { latitude: 50.962, longitude: 6.955, zoom: 8 }
+    },
+    location: { latitude: 50.962, longitude: 6.955, zoom: 8 },
+    isFavorite: false,
+    isPremium: false,
+    rating: 4.2,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/15.jpg'
+  },
+
+  {
+    id: '6af6f711-c28d-4121-82cd-e0b462a27f10',
+    title: 'Harbor view studio',
+    type: 'studio',
+    price: 95,
+    city: {
+      name: 'Hamburg',
+      location: { latitude: 53.5412, longitude: 9.9969, zoom: 8 }
+    },
+    location: { latitude: 53.5412, longitude: 9.9969, zoom: 8 },
+    isFavorite: true,
+    isPremium: false,
+    rating: 4.7,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/17.jpg'
+  },
+
+  {
+    id: '6af6f711-c28d-4121-82cd-e0b462a27f11',
+    title: 'Business apartment near fair',
+    type: 'apartment',
+    price: 150,
     city: {
       name: 'Dusseldorf',
-      location: {
-        latitude: 51.225402,
-        longitude: 6.776314,
-        zoom: 8
-      }
+      location: { latitude: 51.2206, longitude: 6.7855, zoom: 8 }
     },
-    location: {
-      latitude: 51.225402,
-      longitude: 6.776314,
-      zoom: 8
-    },
-    isFavorite: true,
+    location: { latitude: 51.2206, longitude: 6.7855, zoom: 8 },
+    isFavorite: false,
     isPremium: true,
-    rating: 4.9,
-    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/14.jpg'
-  }
+    rating: 4.5,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/13.jpg'
+  },
 ];
