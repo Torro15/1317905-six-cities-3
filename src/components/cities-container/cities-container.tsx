@@ -4,7 +4,7 @@ import { RootState } from '../../store';
 import PlaceCardList from '../../components/place-card/place-card-list';
 import Map from '../../components/map/map';
 import SortList from '../sort-list/sort-list';
-import { OfferCard } from '../../types/offer';
+import { sortOffers } from './sort-offers';
 
 function CitiesContainer(): JSX.Element {
   const [cardActive, setCardActive] = useState<string | null>(null);
@@ -14,20 +14,6 @@ function CitiesContainer(): JSX.Element {
   const sorting = useSelector((state: RootState) => state.sorting);
 
   const filteredOffers = allOffers.filter((offer) => offer.city.name === city);
-
-  const sortOffers = (offers: OfferCard[], sortType: string) => {
-    const copyOffers = [...offers];
-    switch(sortType) {
-      case 'priceLowToHigh':
-        return copyOffers.sort((a , b) => a.price - b.price);
-      case 'priceHighToLow':
-        return copyOffers.sort((a , b) => b.price - a.price);
-      case 'topRated':
-        return copyOffers.sort((a , b) => b.rating - a.rating);
-      default:
-        return copyOffers;
-    }
-  };
 
   const sortedOffers = sortOffers(filteredOffers, sorting);
   const isEmpty = sortedOffers.length === 0;
