@@ -20,6 +20,7 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state, action) => {
       state.city = action.payload;
+      state.sorting = 'popular';
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
