@@ -1,4 +1,3 @@
-// src/components/app/app.tsx
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
@@ -31,7 +30,7 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute>
                 <FavoritesPage />
               </PrivateRoute>
             }

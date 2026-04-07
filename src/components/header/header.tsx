@@ -1,18 +1,39 @@
+import { useAppDispatch, useAppSelector } from '../../store/hooks'; // создайте хуки, если ещё нет
+import { logoutAction } from '../../store/api-actions';
+import { Link } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import HeaderLogo from '../header/header-logo';
-import {Link} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
-import { getAuthStatus } from '../../utils/utils';
-
 
 type HeaderProps = {
   withNav?: boolean;
 };
 
-function Header({ withNav = true }: HeaderProps) : JSX.Element {
+function Header({ withNav = true }: HeaderProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const { authorizationStatus, user } = useAppSelector((state) => state);
+  const favoritesCount = useAppSelector((state) =>
+    state.offers.filter((offer) => offer.isFavorite).length
+  );
 
+  const handleLogout = () => {
+    dispatch(logoutAction());
+  };
 
-  const authorizationStatus = getAuthStatus();
-  const showNavigation = withNav && authorizationStatus === AuthorizationStatus.Auth;
+  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
+
+  if (!withNav) {
+    return (
+      <header className="header">
+        <div className="container">
+          <div className="header__wrapper">
+            <div className="header__left">
+              <HeaderLogo />
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="header">
@@ -22,33 +43,55 @@ function Header({ withNav = true }: HeaderProps) : JSX.Element {
             <HeaderLogo />
           </div>
 
-          {showNavigation && (
-            <nav className="header__nav">
-              <ul className="header__nav-list">
+          <nav className="header__nav">
+            <ul className="header__nav-list">
+              {isAuth ? (
+                <>
+                  <li className="header__nav-item user">
+                    <Link
+                      className="header__nav-link header__nav-link--profile"
+                      to={AppRoute.Favorites}
+                    >
+                      <div
+                        className="header__avatar-wrapper user__avatar-wrapper"
+                        style={
+                          user?.avatarUrl
+                            ? { backgroundImage: `url(${user.avatarUrl})`, backgroundSize: 'cover' }
+                            : undefined
+                        }
+                      />
+                      <span className="header__user-name user__name">
+                        {user?.email || 'User'}
+                      </span>
+                      <span className="header__favorite-count">{favoritesCount}</span>
+                    </Link>
+                  </li>
+                  <li className="header__nav-item">
+                    <button
+                      className="header__nav-link"
+                      onClick={handleLogout}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
+                      <span className="header__signout">Sign out</span>
+                    </button>
+                  </li>
+                </>
+              ) : (
                 <li className="header__nav-item user">
                   <Link
                     className="header__nav-link header__nav-link--profile"
-                    to={AppRoute.Favorites}
+                    to={AppRoute.Login}
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper" />
-                    <span className="header__user-name user__name">
-                        Oliver.conner@gmail.com
-                    </span>
-                    <span className="header__favorite-count">3</span>
+                    <span className="header__login">Sign in</span>
                   </Link>
                 </li>
-                <li className="header__nav-item">
-                  <Link className="header__nav-link" to={AppRoute.Login}>
-                    <span className="header__signout">Sign out</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          )}
+              )}
+            </ul>
+          </nav>
         </div>
       </div>
     </header>
-
   );
 }
 
