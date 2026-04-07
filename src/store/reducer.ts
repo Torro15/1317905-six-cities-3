@@ -6,10 +6,15 @@ import {
   requireAuthorization,
   setOffersDataLoadingStatus,
   setError,
-  setUser
+  setUser,
 } from './action';
 
-import { fetchOfferAction, fetchNearbyOffersAction, fetchReviewsAction } from './api-actions';
+import {
+  fetchOfferAction,
+  fetchNearbyOffersAction,
+  fetchReviewsAction,
+  postCommentAction
+} from './api-actions';
 
 import { OfferCard, Offer } from '../types/offer';
 import { Review } from '../types/review';
@@ -99,6 +104,12 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(fetchReviewsAction.rejected, (state) => {
       state.reviews = [];
       state.isReviewsLoading = false;
+    })
+    .addCase(postCommentAction.fulfilled, (state, action) => {
+      state.reviews.unshift(action.payload);
+    })
+    .addCase(postCommentAction.rejected, (state) => {
+      state.error = 'Failed to post comment';
     });
 });
 
