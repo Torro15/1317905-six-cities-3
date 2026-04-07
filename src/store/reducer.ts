@@ -6,12 +6,14 @@ import {
   requireAuthorization,
   setOffersDataLoadingStatus,
   setError,
+  setUser
 } from './action';
 
 import { fetchOfferAction, fetchNearbyOffersAction, fetchReviewsAction } from './api-actions';
 
 import { OfferCard, Offer } from '../types/offer';
 import { Review } from '../types/review';
+import { UserData } from '../types/user-data';
 import { CITIES, SORT_TYPES, AuthorizationStatus } from '../const';
 
 export type AppState = {
@@ -26,6 +28,7 @@ export type AppState = {
   reviews: Review[];
   isReviewsLoading: boolean;
   error: string | null;
+  user: UserData | null;
 };
 
 const initialState: AppState = {
@@ -40,6 +43,7 @@ const initialState: AppState = {
   reviews: [],
   isReviewsLoading: false,
   error: null,
+  user: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -56,6 +60,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setUser, (state, action) => {
+      state.user = action.payload;
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersLoading = action.payload;
