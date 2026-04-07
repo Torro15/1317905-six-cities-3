@@ -8,6 +8,7 @@ import {
   requireAuthorization,
   setError,
   setOffersDataLoadingStatus,
+  setUser
 } from './action';
 
 import { saveToken, dropToken } from '../services/token';
@@ -83,10 +84,12 @@ export const checkAuthAction = createAsyncThunk<
   }
 >('user/checkAuth', async (_arg, { dispatch, extra: api }) => {
   try {
-    await api.get(APIRoute.Login);
+    const { data } = await api.get<UserData>(APIRoute.Login);
+    dispatch(setUser(data));
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
   } catch {
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    dispatch(setUser(null));
   }
 });
 
@@ -101,10 +104,9 @@ export const loginAction = createAsyncThunk<
 >(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    const {
-      data: { token },
-    } = await api.post<UserData>(APIRoute.Login, { email, password });
-    saveToken(token);
+    const {data} = await api.post<UserData>(APIRoute.Login, { email, password });
+    saveToken(data.token);
+    dispatch(setUser(data));
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
   },
 );
@@ -120,6 +122,7 @@ export const logoutAction = createAsyncThunk<
 >('user/logout', async (_arg, { dispatch, extra: api }) => {
   await api.delete(APIRoute.Logout);
   dropToken();
+  dispatch(setUser(null));
   dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
 });
 export const fetchReviewsAction = createAsyncThunk<
