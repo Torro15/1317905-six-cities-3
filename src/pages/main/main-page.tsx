@@ -5,8 +5,8 @@ import Cities from '../../components/cities/cities';
 import CitiesContainer from '../../components/cities-container/cities-container';
 
 function MainPage(): JSX.Element {
-  const city = useSelector((state: RootState) => state.city);
-  const allOffers = useSelector((state: RootState) => state.offers);
+  const city = useSelector((state: RootState) => state.ui.city);
+  const allOffers = useSelector((state: RootState) => state.offers.items);
 
   const filteredOffers = useMemo(() => allOffers.filter((offer) => offer.city.name === city), [allOffers, city]);
   const isEmpty = filteredOffers.length === 0;

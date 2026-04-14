@@ -10,9 +10,9 @@ type HeaderProps = {
 
 function Header({ withNav = true }: HeaderProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const { authorizationStatus, user } = useAppSelector((state) => state);
+  const { authorizationStatus, user } = useAppSelector((state) => state.user);
   const favoritesCount = useAppSelector((state) =>
-    state.offers.filter((offer) => offer.isFavorite).length
+    state.offers.items.filter((offer) => offer.isFavorite).length
   );
 
   const handleLogout = () => {

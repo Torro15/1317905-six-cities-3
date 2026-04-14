@@ -12,22 +12,23 @@ import PrivateRoute from '../private-route/private-route';
 import Layout from '../layout/layout';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
-
 function App(): JSX.Element {
-  const authorizationStatus = useSelector((state: RootState) => state.authorizationStatus);
-  const dataLoadingError = useSelector((state: RootState) => state.isDataLoading);
-  const isOffersLoading = useSelector((state: RootState) => state.isOffersLoading);
+  const authorizationStatus = useSelector(
+    (state: RootState) => state.user.authorizationStatus,
+  );
+  const isOffersLoading = useSelector(
+    (state: RootState) => state.offers.isLoading,
+  );
+  const dataLoadingError = useSelector(
+    (state: RootState) => state.offers.error,
+  );
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersLoading) {
-    return (
-      <LoadingScreen />
-    );
+    return <LoadingScreen />;
   }
 
   if (dataLoadingError) {
-    return (
-      <ErrorScreen />
-    );
+    return <ErrorScreen />;
   }
 
   return (
@@ -44,12 +45,7 @@ function App(): JSX.Element {
               </PrivateRoute>
             }
           />
-          <Route
-            path={AppRoute.Offer}
-            element={
-              <OfferPage/>
-            }
-          />
+          <Route path={AppRoute.Offer} element={<OfferPage />} />
           <Route path="*" element={<NotFoundScreenPage />} />
         </Route>
       </Routes>

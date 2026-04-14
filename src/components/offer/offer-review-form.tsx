@@ -17,7 +17,7 @@ function OfferReviewForm({ offerId }: OfferReviewFormProps): JSX.Element | null 
 
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus,
+    (state) => state.user.authorizationStatus,
   );
 
   const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {

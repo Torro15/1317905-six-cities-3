@@ -9,9 +9,9 @@ import { sortOffers } from './sort-offers';
 function CitiesContainer(): JSX.Element {
   const [cardActive, setCardActive] = useState<string | null>(null);
 
-  const city = useSelector((state: RootState) => state.city);
-  const allOffers = useSelector((state: RootState) => state.offers);
-  const sorting = useSelector((state: RootState) => state.sorting);
+  const city = useSelector((state: RootState) => state.ui.city);
+  const allOffers = useSelector((state: RootState) => state.offers.items);
+  const sorting = useSelector((state: RootState) => state.ui.sorting);
 
   const filteredOffers = useMemo(() => allOffers.filter((offer) => offer.city.name === city), [allOffers, city]);
 

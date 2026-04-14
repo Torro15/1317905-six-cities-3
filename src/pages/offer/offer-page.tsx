@@ -23,11 +23,11 @@ function OfferPage(): JSX.Element {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
-  const singleOffer = useSelector((state: RootState) => state.singleOffer);
-  const nearbyOffers = useSelector((state: RootState) => state.nearbyOffers);
-  const reviews = useSelector((state: RootState) => state.reviews);
+  const singleOffer = useSelector((state: RootState) => state.offerDetails.singleOffer);
+  const nearbyOffers = useSelector((state: RootState) => state.offerDetails.nearbyOffers);
+  const reviews = useSelector((state: RootState) => state.offerDetails.reviews);
   const isOfferLoading = useSelector(
-    (state: RootState) => state.isOfferLoading,
+    (state: RootState) => state.offerDetails.isOfferLoading,
   );
 
   const lastFetchedId = useRef<string | null>(null);

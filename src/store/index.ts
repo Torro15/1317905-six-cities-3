@@ -1,11 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from './reducer';
-import {createAPI} from '../services/api';
+import { createAPI } from '../services/api';
+import uiReducer from './slices/ui-slice';
+import offersReducer from './slices/offers-slice';
+import offerDetailsReducer from './slices/offer-details-slice';
+import userReducer from './slices/user-slice';
 
 export const api = createAPI();
 
 export const store = configureStore({
-  reducer,
+  reducer: {
+    ui: uiReducer,
+    offers: offersReducer,
+    offerDetails: offerDetailsReducer,
+    user: userReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {

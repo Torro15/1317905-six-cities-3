@@ -1,12 +1,12 @@
 import { useState, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { setSorting } from '../../store/action';
+import { setSorting } from '../../store/slices/ui-slice';
 import { SORT_TYPES } from '../../const';
 
 function SortList(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-  const currentSort = useSelector((state: RootState) => state.sorting);
+  const currentSort = useSelector((state: RootState) => state.ui.sorting);
   const dispatch = useDispatch();
 
   const handleSortClick = (sortValue: string) => {

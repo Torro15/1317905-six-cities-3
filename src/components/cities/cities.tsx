@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { changeCity } from '../../store/action';
+import { changeCity } from '../../store/slices/ui-slice';
 import { CITIES } from '../../const';
 
 function Cities(): JSX.Element {
   const dispatch = useDispatch();
-  const currentCity = useSelector((state: RootState) => state.city);
+  const currentCity = useSelector((state: RootState) => state.ui.city);
 
   const handleCityClick = (city: string) => {
     dispatch(changeCity(city));
