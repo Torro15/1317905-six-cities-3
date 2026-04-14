@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '../../store/hooks'; // создайте хуки, если ещё нет
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logoutAction } from '../../store/api-actions';
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
