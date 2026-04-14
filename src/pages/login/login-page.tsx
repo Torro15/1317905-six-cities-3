@@ -10,7 +10,7 @@ function LoginPage(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {

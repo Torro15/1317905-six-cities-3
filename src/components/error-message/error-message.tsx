@@ -3,7 +3,7 @@ import { RootState } from '../../store';
 import './error-message.css';
 
 function ErrorMessage(): JSX.Element | null {
-  const error = useSelector((state: RootState) => state.error);
+  const error = useSelector((state: RootState) => state.ui.error);
 
   return error ? <div className="error-message">{error}</div> : null;
 }

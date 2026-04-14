@@ -5,7 +5,7 @@ import PlaceCard from '../../components/place-card/place-card.tsx';
 
 
 function FavoritesPage(): JSX.Element {
-  const allOffers = useSelector((state: RootState) => state.offers);
+  const allOffers = useSelector((state: RootState) => state.offers.items);
   const favoriteOffers = allOffers.filter((offer) => offer.isFavorite);
   const isEmpty = favoriteOffers.length === 0;
 
